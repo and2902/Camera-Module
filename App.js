@@ -1,36 +1,35 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image, Button, } from 'react-native';
-import * as ImagePicker from 'expo-image-picker'; // here is the Library of expo image picker that is used to open the camera function
-import { MaterialCommunityIcons } from '@expo/vector-icons'; // here is the library for icons
+import * as ImagePicker from 'expo-image-picker';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default class App extends React.Component {
   state = {
-    image: null, //initially set the state of image that is displying the page is null 
+    image: null,
   };
 
   takePicture = async () => {
 
-    const result = await ImagePicker.launchCameraAsync({ // here ImagePicker.launchCameraAsync is a function that open the camera of hardware module
-      allowsEditing: false, // here allowsediting is false because we have no need to crop the picture
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
     });
-    this.setState({ image: result.uri });  //here the state of image is changed and this state of image is displying bellow
+    this.setState({ image: result.uri });
   };
 
   render() {
     const { image } = this.state;
     return (
       <View style={styles.container}>
-        <Text style={styles.Text}>Welcome to Camera App</Text>  {/* Here is the simple text Line */}
-
+        <Text style={styles.Text}>Welcome to Camera App</Text>
         {image && (
           <Image source={{ uri: image }} style={styles.image} />)}
-        {/* Here is the line that is display the image after take it */}
-
         <MaterialCommunityIcons name="camera-enhance-outline" size={64} color="green" onPress={() => this.takePicture()} style={styles.Icon} />
-        {/* Here is the Icon that is used to call the fuction taht is take picture*/}
-
-        <Text style={{ textAlign: 'center', marginTop: 10 }}>Press the icon to take picture</Text>
-        {/* Here is the simple text Line */}
-
+        <Text style={{textAlign:'center',marginTop:10}}>Press the icon to take picture</Text>
+        {/* <TouchableOpacity style={styles.buttonContainer}>
+            <Text style={styles.buttonText}
+               onPress={() => this.takePicture()}
+            >Camera
+                   </Text>
+          </TouchableOpacity> */}
       </View>
     );
   }
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
   },
   Icon: {
     // marginTop: 400,
-    marginRight: 150
+    marginRight:150
   },
   buttonContainer: {
     backgroundColor: '#28a745',
@@ -79,11 +78,11 @@ const styles = StyleSheet.create({
 
   image: {
     width: 300,
-    height: 420,
-    backgroundColor: 'green',
-
-    marginTop: 30,
-    marginLeft: 30
+    height: 400,
+    backgroundColor:'green',
+  
+    marginTop:50,
+    marginLeft:25
 
   },
 });
